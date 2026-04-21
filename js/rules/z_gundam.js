@@ -3,7 +3,7 @@ import {
   getStateEffect,
   setStateEffect,
   clearStateEffect
-} from "./js_unit_runtime.js";
+} from "../js_unit_runtime.js";
 
 function clearOverEvadeState(state) {
   state.overEvadeMode = false;
