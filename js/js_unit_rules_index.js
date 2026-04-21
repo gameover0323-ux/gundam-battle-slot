@@ -21,7 +21,7 @@ import {
   onZGundamActionResolved,
   onZGundamDamaged,
   modifyZGundamTakenDamage
-} from "./rules/z_gundam.js";
+} from "./js_rules_z_gundam.js";
 
 import {
   getWingZeroDerivedState,
