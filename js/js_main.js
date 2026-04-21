@@ -1,4 +1,4 @@
-import { unitList } from "./js_units_index.js";
+import { unitList } from "./units/js_units_index.js";
 import {
   createBattleState,
   applyUnitDerivedState,
