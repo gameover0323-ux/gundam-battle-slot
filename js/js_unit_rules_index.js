@@ -21,7 +21,7 @@ import {
   onZGundamActionResolved,
   onZGundamDamaged,
   modifyZGundamTakenDamage
-} from "./js_unit_rules_z_gundam.js";
+} from "./js/rules/z_gundam.js";
 
 import {
   getWingZeroDerivedState,
@@ -36,7 +36,7 @@ import {
   modifyWingZeroTakenDamage,
   modifyWingZeroEvadeAttempt,
   onWingZeroResolveChoice
-} from "./js_unit_rules_wing_zero.js";
+} from "./js/rules/wing_zero.js";
 
 export const unitRulesMap = {
   gundam_mc: {
