@@ -9,7 +9,7 @@ import {
   onGundamMcDamaged,
   modifyGundamMcTakenDamage,
   onGundamMcResolveChoice
-} from "./js_rules_gundam_mc.js";
+} from "./rules/gundam_mc.js";
 
 import {
   getZGundamDerivedState,
