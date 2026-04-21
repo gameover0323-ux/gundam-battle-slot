@@ -22,7 +22,7 @@ import {
 import {
   takeHit as resolveTakeHit,
   evadeAttack as resolveEvadeAttack
-} from "./core/battle_system.js";
+} from "./js_battle_system.js";
 import { resolveSlotEffect } from "./js_slot_effects.js";
 import { executeCommonSpecial } from "./js_special_actions.js";
 import {
