@@ -1,4 +1,4 @@
-import { createAttack } from "./js_battle_system.js";
+import { createAttack } from "./core/battle_system.js";
 
 function parseSpecial(desc) {
   if (desc.includes("軽減不可")) return "ignoreDefense";
