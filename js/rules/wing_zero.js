@@ -1,10 +1,10 @@
-import { createAttack } from "./js_battle_system.js";
+import { createAttack } from "../js_battle_system.js";
 import {
   setForm,
   getStateEffect,
   setStateEffect,
   clearStateEffect
-} from "./js_unit_runtime.js";
+} from "../js_unit_runtime.js";
 
 function ensureWingZeroState(state) {
   if (!state.wingMode) state.wingMode = "evade";
