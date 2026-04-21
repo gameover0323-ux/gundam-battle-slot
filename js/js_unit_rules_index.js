@@ -36,7 +36,7 @@ import {
   modifyWingZeroTakenDamage,
   modifyWingZeroEvadeAttempt,
   onWingZeroResolveChoice
-} from "./js_rules_wing_zero.js";
+} from "./rules/wing_zero.js";
 
 export const unitRulesMap = {
   gundam_mc: {
