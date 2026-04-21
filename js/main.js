@@ -30,7 +30,7 @@ import {
   renderPlayerState,
   renderAttackChoicesUI,
   renderPendingChoiceUI
-} from "./js_ui.js";
+} from "./js/ui/ui.js";
 
 const screens = {
   title: document.getElementById("title"),
