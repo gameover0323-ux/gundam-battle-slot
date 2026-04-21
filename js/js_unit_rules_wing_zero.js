@@ -1,4 +1,4 @@
-import { createAttack } from "./core/battle_system.js";
+import { createAttack } from "./js_battle_system.js";
 import {
   setForm,
   getStateEffect,
