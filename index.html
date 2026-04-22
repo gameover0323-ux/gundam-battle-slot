@@ -26,28 +26,56 @@
 <!-- バトル画面 -->
 <div id="battle" class="screen">
 
+
+  <div style="text-align:left; margin-bottom:6px;">
+    <button id="toggleTestModeBtn">テストモード: OFF</button>
+  </div>
+
+  
   <h2 id="turnText">TURN 1</h2>
   <h3 id="currentPlayer">PLAYER A</h3>
 
   <div class="container">
     <div class="player" id="playerA"></div>
 
-    <div id="turnCounterBox" style="
-      width:35px;
-      height:35px;
-      border:1px solid white;
-      border-radius:8px;
+    <div style="
       display:flex;
       flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      font-size:11px;
-      line-height:1.2;
+      gap:8px;
       margin:0 4px;
       flex-shrink:0;
     ">
-      <div>TURN</div>
-      <div id="turnCounterValue" style="font-size:18px;font-weight:bold;">1</div>
+      <div id="turnCounterBox" style="
+        width:35px;
+        height:35px;
+        border:1px solid white;
+        border-radius:8px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        font-size:11px;
+        line-height:1.2;
+      ">
+        <div>TURN</div>
+        <div id="turnCounterValue" style="font-size:18px;font-weight:bold;">1</div>
+      </div>
+
+      <div id="actionCounterBox" style="
+        width:35px;
+        height:35px;
+        border:1px solid white;
+        border-radius:8px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        font-size:11px;
+        line-height:1.2;
+      ">
+        <div>行動</div>
+        <div id="actionCounterValue" style="font-size:18px;font-weight:bold;">1</div>
+      </div>
     </div>
 
     <div class="player" id="playerB"></div>
