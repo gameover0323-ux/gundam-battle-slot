@@ -1,4 +1,3 @@
-alert("main loaded");
 import { unitList } from "./units/js_units_index.js";
 import {
   createBattleState,
@@ -33,7 +32,6 @@ import {
   renderPendingChoiceUI
 } from "./ui/ui.js";
 
-alert("main loaded");
 
 const screens = {
   title: document.getElementById("title"),
