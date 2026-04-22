@@ -23,19 +23,7 @@ import {
   modifyZGundamTakenDamage
 } from "./rules/z_gundam.js";
 
-import {
-  getShiningDerivedState,
-  canUseShiningSpecial,
-  executeShiningSpecial,
-  onShiningTurnEnd,
-  onShiningBeforeSlot,
-  onShiningEnemyBeforeSlot,
-  onShiningAfterSlotResolved,
-  onShiningActionResolved,
-  onShiningDamaged,
-  modifyShiningTakenDamage,
-  onShiningResolveChoice
-} from "./rules/shining_gundam.js";
+
 
 import {
   getWingZeroDerivedState,
@@ -78,20 +66,7 @@ export const unitRulesMap = {
     modifyTakenDamage: modifyZGundamTakenDamage
   },
 
-  shining_gundam: {
-    getDerivedState: getShiningDerivedState,
-    canUseSpecial: canUseShiningSpecial,
-    executeSpecial: executeShiningSpecial,
-    onTurnEnd: onShiningTurnEnd,
-    onBeforeSlot: onShiningBeforeSlot,
-    onEnemyBeforeSlot: onShiningEnemyBeforeSlot,
-    onAfterSlotResolved: onShiningAfterSlotResolved,
-    onActionResolved: onShiningActionResolved,
-    onDamaged: onShiningDamaged,
-    modifyTakenDamage: modifyShiningTakenDamage,
-    onResolveChoice: onShiningResolveChoice
-  },
-  
+
   wing_zero: {
     getDerivedState: getWingZeroDerivedState,
     canUseSpecial: canUseWingZeroSpecial,
