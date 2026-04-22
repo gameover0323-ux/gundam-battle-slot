@@ -1,3 +1,4 @@
+alert("main loaded");
 import { unitList } from "./units/js_units_index.js";
 import {
   createBattleState,
