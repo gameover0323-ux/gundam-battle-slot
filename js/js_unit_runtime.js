@@ -410,6 +410,10 @@ export function createBattleState(unit) {
     evade: defaultForm.evadeMax,
     evadeMax: defaultForm.evadeMax,
 
+   
+    actionCount: 1,
+    baseActionCount: 1,
+    
     shieldCount: 3,
     shieldActive: false,
 
