@@ -68,6 +68,8 @@ let selectedUnitB = null;
 
 let currentTurn = 1;
 let currentPlayer = "A";
+let isTestMode = false;
+
 
 let playerAState = null;
 let playerBState = null;
@@ -119,6 +121,63 @@ function clearCurrentAction() {
 }
 function clearPendingChoice() {
   pendingChoice = null;
+}
+
+function ensureActionState(state) {
+  if (!state) return;
+
+  if (typeof state.baseActionCount !== "number") {
+    state.baseActionCount = 1;
+  }
+
+  if (typeof state.actionCount !== "number") {
+    state.actionCount = state.baseActionCount;
+  }
+}
+
+function resetActionCount(state) {
+  if (!state) return;
+  ensureActionState(state);
+  state.actionCount = state.baseActionCount;
+}
+
+function canConsumeAction(state, amount = 1) {
+  if (!state) return false;
+  ensureActionState(state);
+  return state.actionCount >= amount;
+}
+
+function consumeActionCount(state, amount = 1) {
+  if (!state) return;
+  ensureActionState(state);
+
+  if (isTestMode) {
+    return;
+  }
+
+  state.actionCount = Math.max(0, state.actionCount - amount);
+}
+
+function updateBattleCenterUi() {
+  const actionCounterValue = document.getElementById("actionCounterValue");
+  const toggleTestModeBtn = document.getElementById("toggleTestModeBtn");
+
+  const actor = getPlayerState(currentPlayer);
+  ensureActionState(actor);
+
+  if (actionCounterValue) {
+    actionCounterValue.textContent = actor ? String(actor.actionCount) : "1";
+  }
+
+  if (toggleTestModeBtn) {
+    toggleTestModeBtn.textContent = `テストモード: ${isTestMode ? "ON" : "OFF"}`;
+  }
+}
+
+function toggleTestMode() {
+  isTestMode = !isTestMode;
+  redrawBattleBoards();
+  showPopup(isTestMode ? "テストモードON" : "テストモードOFF");
 }
 
 function startSlotAction(ownerPlayer, slotKey, slotOverride = null) {
@@ -317,6 +376,9 @@ function startBattlePreview(unitA, unitB) {
   playerAState = createBattleState(unitA);
   playerBState = createBattleState(unitB);
 
+  resetActionCount(playerAState);
+  resetActionCount(playerBState);
+
   currentTurn = 1;
   currentPlayer = "A";
   currentAttack = [];
@@ -324,6 +386,8 @@ function startBattlePreview(unitA, unitB) {
   clearBattleNotice();
   clearCurrentAction();
   clearPendingChoice();
+
+  isTestMode = false;
 
   selectingPlayer = "A";
   selectedUnitA = null;
@@ -471,6 +535,7 @@ function redrawBattleBoards() {
   document.getElementById("turnText").textContent = `TURN ${currentTurn}`;
   document.getElementById("turnCounterValue").textContent = String(currentTurn);
   document.getElementById("currentPlayer").textContent = `PLAYER ${currentPlayer}`;
+  updateBattleCenterUi();
 }
 function handleChoiceRequest(requestChoice) {
   if (!requestChoice) return;
@@ -874,13 +939,30 @@ function executeSlot() {
   }
 
   const attacker = getPlayerState(currentPlayer);
+  if (!attacker) return;
+
+  ensureActionState(attacker);
+
+  if (!canConsumeAction(attacker, 1)) {
+    showPopup("残り行動数が足りない");
+    return;
+  }
+
   const rollableSlotKeys = getRollableSlotKeys(attacker);
+  if (!Array.isArray(rollableSlotKeys) || rollableSlotKeys.length === 0) {
+    showPopup("使用可能なスロットがない");
+    return;
+  }
+
   const rolledIndex = Math.floor(Math.random() * rollableSlotKeys.length);
   const slotKey = rollableSlotKeys[rolledIndex];
 
-  startSlotAction(currentPlayer, slotKey);
-}
+  const started = startSlotAction(currentPlayer, slotKey);
+  if (!started) return;
 
+  consumeActionCount(attacker, 1);
+  redrawBattleBoards();
+}
 
 function simulateSlot() {
   const attacker = getPlayerState(currentPlayer);
@@ -931,6 +1013,7 @@ function endTurn() {
   }
 
   const nextActor = getPlayerState(currentPlayer);
+  resetActionCount(nextActor);
 
   if (nextActor.confuseStock > 0) {
     nextActor.isConfusedTurn = true;
@@ -954,5 +1037,6 @@ function endTurn() {
 document.getElementById("executeSlotBtn").addEventListener("click", executeSlot);
 document.getElementById("simulateSlotBtn").addEventListener("click", simulateSlot);
 document.getElementById("endTurnBtn").addEventListener("click", endTurn);
+document.getElementById("toggleTestModeBtn").addEventListener("click", toggleTestMode);
 
 loadUnitButtons();
