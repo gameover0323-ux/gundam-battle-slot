@@ -32,6 +32,8 @@ import {
   renderPendingChoiceUI
 } from "./ui/ui.js";
 
+alert("main loaded");
+
 const screens = {
   title: document.getElementById("title"),
   select: document.getElementById("select"),
